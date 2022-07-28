@@ -4,7 +4,7 @@ import youtube from '../apis/youtube';
 const useVideos = defaultSearchTerm => {
   const [videos, setVideos] = useState([]);
 
-  const onSearchSubmit = async value => {
+  const search = async value => {
     const response = await youtube.get('/search', {
       params: {
         q: value,

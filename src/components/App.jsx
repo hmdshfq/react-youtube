@@ -1,12 +1,12 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import SearchBar from './SearchBar';
 import VideoList from './VideoList';
 import youtube from '../apis/youtube';
 import VideoDetail from './VideoDetail';
 
 const App = () => {
-  const [videos, setVideos] = useState([])
-  const [selectedVideo, setSelectedVideo] = useState(null)
+  const [videos, setVideos] = useState([]);
+  const [selectedVideo, setSelectedVideo] = useState(null);
 
   const onSearchSubmit = async value => {
     const response = await youtube.get('/search', {
@@ -14,15 +14,12 @@ const App = () => {
         q: value,
       },
     });
-    setVideos(response.data.items)
-    setSelectedVideo(response.data.items[0])
-  };
-  const selectVideo = video => {
-    setSelectedVideo(video)
+    setVideos(response.data.items);
+    setSelectedVideo(response.data.items[0]);
   };
 
   useEffect(() => {
-    onSearchSubmit('Peppa Pig')
+    onSearchSubmit('Peppa Pig');
   }, []);
 
   return (
@@ -36,13 +33,15 @@ const App = () => {
           <div className='five wide column'>
             <VideoList
               videos={videos}
-              selectVideo={selectVideo}
+              // We can also write the commented code as the uncommented one
+              // selectVideo={video => setSelectedVideo(video)}
+              selectVideo={setSelectedVideo}
             />
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default App;

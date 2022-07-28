@@ -15,7 +15,7 @@ const useVideos = defaultSearchTerm => {
 
   useEffect(() => {
     search(defaultSearchTerm);
-  }, []);
+  }, [defaultSearchTerm]);
 
   /* 
   We can return the values in two ways 
